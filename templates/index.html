@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+
+    {% if registered %}
+    <div class="alert alert-info" role="alert">
+        Registered!
+      </div>
+    {% elif sold %}
+    <div class="alert alert-info" role="alert">
+        Sold!
+      </div>
+    {% elif bought %}
+    <div class="alert alert-info" role="alert">
+        Bought!
+      </div>
+    {% endif %}
+
+    <table class="table table-dark">
+        <thead class="thead-dark">
+            <tr>
+              <th scope="col">Symbol</th>
+              <th scope="col">Shares</th>
+              <th scope="col">Price</th>
+              <th scope="col">TOTAL</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for port in portfolio %}
+
+                <tr>
+                    <td>{{ port.symbol }}</td>
+                    <td>{{ port.shares }}</td>
+                    <td>{{ port.price | format_currency }}</td>
+                    <td>{{ port.total | format_currency }}</td>
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+        <tfoot>
+            {% block content %}
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="3">Cash</td>
+                <td class="border-0 text-end">{{ cash }}</td>
+            </tr>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="3">TOTAL</td>
+                <td class="border-0 w-bold text-end">{{ total }}</td>
+            </tr>
+            {% endblock %}
+        </tfoot>
+
+      </table>
+
+{% endblock %}

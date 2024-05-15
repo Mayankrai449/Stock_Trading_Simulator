@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+
+{% block main %}
+
+    <table class="table table-dark">
+        <thead class="thead-dark">
+            <tr>
+              <th scope="col">Symbol</th>
+              <th scope="col">Sold/Bought</th>
+              <th scope="col">Shares</th>
+              <th scope="col">Price</th>
+              <th scope="col">Transacted</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for his in history %}
+
+                <tr>
+                    <td>{{ his.symbol }}</td>
+                    <td>{{ his.bought }}</td>
+                    <td>{{ his.shares }}</td>
+                    <td>{{ his.price | format_currency }}</td>
+                    <td>{{ his.transacted }}</td>
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+      </table>
+
+{% endblock %}
