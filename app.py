@@ -7,7 +7,7 @@ from flask import Flask, make_response, flash, redirect, render_template, reques
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import apology, login_required, lookup, usd
+from utils import apology, login_required, lookup, usd
 
 # Configure application
 app = Flask(__name__)
